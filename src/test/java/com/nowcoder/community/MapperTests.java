@@ -15,6 +15,7 @@ import java.util.Date;
 @SpringBootTest
 public class MapperTests {
 
+    //使用mybatis和springboot整合后，直接就可以通过自动注入获取到mapper对象，无需再创建sqlsession用于获取mapper对象。
     @Autowired
     private UserMapper userMapper;
 
