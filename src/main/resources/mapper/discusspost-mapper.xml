@@ -6,11 +6,36 @@
 <!--注意对应哪个mapper类必须要对应-->
 <mapper namespace="com.nowcoder.community.dao.DiscussPostMapper">
 
+<!--    这里要和数据库的列名一致，因为是直接查数据库-->
     <sql id="selectFields">
             id, user_id, title, content, type, status, create_time, comment_count, score
     </sql>
     
-    <select id=""
+    <select id="selectDiscussPosts" resultType="DiscussPost">
+        select <include refid="selectFields"></include>
+        from discuss_post
+        where status != 2
+
+<!--         如果用了if，那么相对应的dao层mapper类中，相应的形参，一定要用@Param加别名 如果userId不为0则拼入sql中，这就是动态sql-->
+        <if test = "userId!=0">
+            and user_id = #{userId}
+        </if>
+
+<!--         排序 -->
+        order by type desc, create_time desc
+
+<!--         offset为起始索引位置，limit为一页多少条-->
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="selectDiscussPostsRows" resultType="int">
+        select count(id)
+        from discuss_post
+        where status !=2
+        <if test = "userId!=0">
+            and user_id = #{userId}
+        </if>
+    </select>
 
 
 
