@@ -1,8 +1,11 @@
 package com.nowcoder.community.controller;
 
 import com.nowcoder.community.service.AlphaService;
+import com.nowcoder.community.util.CommunityUtil;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,6 +126,49 @@ public class AlphaController {
         emp.put("salary",8000.00);
         return emp;
     }
+    //cookie示例,返回给浏览器cookie。 之后浏览器Requestheader中就会带有该cookie访问服务器，前提访问路径在cookie的生效路径下。
+    @RequestMapping(path = "/cookie/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookie(HttpServletResponse response){
+        //创建cookie
+        Cookie cookie = new Cookie("code", CommunityUtil.generateUUID());
+
+        //设置cookie的生效范围,即在其子目录下生效
+        cookie.setPath("/community/alhpa");
+
+        //设置cookie的有效时间，其默认是存在内存中，浏览器关闭就消失, 单位是秒
+        cookie.setMaxAge(60 * 10);
+
+        response.addCookie(cookie);
+
+        return "set cookie";
+
+    }
+
+    @RequestMapping(path = "/cookie/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code){
+        System.out.println(code);
+        return "get cookie";
+    }
+
+    //ssesion示例
+    @RequestMapping(path = "/session/set",method = RequestMethod.GET)
+    @ResponseBody
+    public String setSession(HttpSession session){
+        session.setAttribute("id",1);
+        session.setAttribute("name","test");
+        return "set session";
+    }
+
+    @RequestMapping(path = "/session/get",method = RequestMethod.GET)
+    @ResponseBody
+    public String get(HttpSession session){
+        System.out.println(session.getAttribute("id"));
+        System.out.println(session.getAttribute("name"));
+        return "set session";
+    }
+
 
 
 }
