@@ -24,13 +24,11 @@ public class AlphaInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         logger.debug("postHandle:" + handler.toString());
-        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
 
     //在TemplateEngine之后执行
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         logger.debug("afterCompletion:" + handler.toString());
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
     }
 }
