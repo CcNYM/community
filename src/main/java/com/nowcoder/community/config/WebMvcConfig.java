@@ -2,6 +2,7 @@ package com.nowcoder.community.config;
 
 
 import com.nowcoder.community.controller.interceptor.AlphaInterceptor;
+import com.nowcoder.community.controller.interceptor.LoginRequiredInterceptor;
 import com.nowcoder.community.controller.interceptor.LoginTicketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private LoginTicketInterceptor loginTicketInterceptor;
 
+    @Autowired
+    private LoginRequiredInterceptor loginRequiredInterceptor;
+
     //添加拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -43,6 +47,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         //如果不写addPathPatterns，那么除了excludePathPartterns以外，所有的controller都会被拦截
         registry.addInterceptor(loginTicketInterceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");//不拦截的资源，即拦截器中的方法不执行
+
+        registry.addInterceptor(loginRequiredInterceptor)
                 .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");//不拦截的资源，即拦截器中的方法不执行
 
     }
