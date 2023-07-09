@@ -91,4 +91,18 @@ public class MapperTests {
         System.out.println(loginTicket);
     }
 
+    @Test
+    public void testInsertDiscussPost(){
+        DiscussPost discussPost = new DiscussPost();
+        discussPost.setUserId(1);
+        discussPost.setCreateTime(new Date());
+        discussPost.setStatus(1);
+        discussPost.setContent("这是一个测试");
+        discussPost.setScore(100);
+        discussPost.setTitle("test");
+        discussPost.setType(1);
+        int res = discussPostMapper.insertDiscussPost(discussPost);
+        System.out.println("插入成功");
+    }
+
 }
