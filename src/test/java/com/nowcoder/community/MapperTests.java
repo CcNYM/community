@@ -2,6 +2,7 @@ package com.nowcoder.community;
 
 import com.nowcoder.community.dao.DiscussPostMapper;
 import com.nowcoder.community.dao.LoginTicketMapper;
+import com.nowcoder.community.dao.MessageMapper;
 import com.nowcoder.community.dao.UserMapper;
 import com.nowcoder.community.entity.DiscussPost;
 import com.nowcoder.community.entity.LoginTicket;
@@ -14,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -103,6 +106,16 @@ public class MapperTests {
         discussPost.setType(1);
         int res = discussPostMapper.insertDiscussPost(discussPost);
         System.out.println("插入成功");
+    }
+
+    @Autowired
+    private MessageMapper messageMapper;
+
+    @Test
+    public void testMessageUpdate(){
+
+        List<Integer> list = new ArrayList<>(Arrays.asList(206));
+      messageMapper.updateStatus(list,1);
     }
 
 }
