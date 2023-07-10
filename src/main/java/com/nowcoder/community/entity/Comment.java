@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Comment {
 
+
     public int getId() {
         return id;
     }
@@ -28,6 +29,14 @@ public class Comment {
         this.entityType = entityType;
     }
 
+    public int getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(int entityId) {
+        this.entityId = entityId;
+    }
+
     public int getTargetId() {
         return targetId;
     }
@@ -44,6 +53,14 @@ public class Comment {
         this.content = content;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -58,8 +75,10 @@ public class Comment {
                 "id=" + id +
                 ", userId=" + userId +
                 ", entityType=" + entityType +
+                ", entityId=" + entityId +
                 ", targetId=" + targetId +
                 ", content='" + content + '\'' +
+                ", status=" + status +
                 ", createTime=" + createTime +
                 '}';
     }
@@ -67,8 +86,11 @@ public class Comment {
     private int id;
     private int userId;
     private int entityType;
+    private int entityId;
     private int targetId;
     private String content;
+    private int status;
     private Date createTime;
+
 
 }
