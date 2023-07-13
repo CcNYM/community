@@ -108,7 +108,7 @@ public class UserService implements CommunityConstant {
             return ACTIVATION_REPEAT;
         }else if(user.getActivateionCode().equals(code)){
             userMapper.updateStatus(userId,1);
-            return ACTIVSTION_SUCCESS;
+            return ACTIVATION_SUCCESS;
         }
         else {
             return ACTIVATION_FAILURE;
