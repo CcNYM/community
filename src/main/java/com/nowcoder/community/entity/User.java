@@ -4,6 +4,17 @@ import java.util.Date;
 
 public class User {
 
+    private int id;
+    private String username;
+    private String password;
+    private String salt;
+    private String email;
+    private int type;
+    private int status;
+    private String activationCode;
+    private String headerUrl;
+    private Date createTime;
+
     public int getId() {
         return id;
     }
@@ -60,12 +71,12 @@ public class User {
         this.status = status;
     }
 
-    public String getActivateionCode() {
+    public String getActivationCode() {
         return activationCode;
     }
 
-    public void setActivateionCode(String activateionCode) {
-        this.activationCode = activateionCode;
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     public String getHeaderUrl() {
@@ -99,18 +110,5 @@ public class User {
                 ", createTime=" + createTime +
                 '}';
     }
-
-    private int id;
-    private String username;
-    private String password;
-    private String salt;
-    private String email;
-    private int type;
-    private int status;
-    private String activationCode;
-    private  String headerUrl;
-    private Date createTime;
-
-
 
 }
